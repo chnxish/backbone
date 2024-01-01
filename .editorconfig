@@ -1,0 +1,28 @@
+# http://editorconfig.org
+# Consistent coding style across different editors.
+
+# Top-most file
+root = true
+
+# Global styles:
+#   - indent 2 spaces
+#   - add final new line
+#   - trim trailing whitespace
+[*]
+charset = utf-8
+end_of_line = lf
+indent_size = 2
+indent_style = space
+insert_final_newline =  = true
+trim_trailing_whitespace = true
+
+# Markdown:
+#   - trailing whitespace is significant
+[*.md]
+trim_trailing_whitespace = false
+
+# Makefile and Assembly:
+#   - indent 1 tab
+[{Makefile,*.asm}]
+indent_size = tab
+indent_style = tab
