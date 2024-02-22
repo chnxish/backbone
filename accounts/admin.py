@@ -1,21 +1,24 @@
 from django.contrib import admin
+from django.contrib.auth import get_user_model
 from django.contrib.auth.admin import UserAdmin
 
-from .forms import CustomUserCreationForm, CustomUserChangeForm
-from .models import CustomUser
+from accounts.forms import RegisterForm, UpdateUserForm
+from accounts.models import Profile
+
+User = get_user_model()
 
 
 class CustomUserAdmin(UserAdmin):
-    add_form = CustomUserCreationForm
-    form = CustomUserChangeForm
-    model = CustomUser
+    add_form = RegisterForm
+    form = UpdateUserForm
+    model = User
     list_display = ("username", "email", "is_staff", "is_active")
     list_filter = ("email", "is_staff", "is_active")
     fieldsets = (
-        (None, {"fields": ("username", "email", "password")}),
+        (None, {"fields": ("username", "password")}),
         (
             "Permissions",
-            {"fields": ("is_staff", "is_active", "groups", "user_permissions")},
+            {"fields": ("is_staff", "is_active")},
         ),
     )
     add_fieldsets = (
@@ -38,4 +41,15 @@ class CustomUserAdmin(UserAdmin):
     ordering = ("email",)
 
 
-admin.site.register(CustomUser, CustomUserAdmin)
+class ProfileAdmin(admin.ModelAdmin):
+    model = Profile
+    list_display = ("user", "bio")
+    list_filter = ("user",)
+    fieldsets = ((None, {"fields": ("avatar", "bio")}),)
+
+    def has_add_permission(self, request):
+        return False
+
+
+admin.site.register(User, CustomUserAdmin)
+admin.site.register(Profile, ProfileAdmin)
