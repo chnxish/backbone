@@ -1,0 +1,14 @@
+{% autoescape off %}
+
+Welcome to Backbone!
+
+Thank you for signing up with us. To activate your account, please click on the link below:
+
+{{ protocol }}://{{ domain }}{% url 'activate' uidb64=uid token=token %}
+
+If you didn't sign up for Backbone, please disregard this email.
+
+Best regards,
+The Backbone Team
+
+{% endautoescape %}

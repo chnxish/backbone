@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %} Logout Page {% endblock title %}
+{% block content %}
+<div class="container my-3 p-3">
+  <div class="row justify-content-center">
+    <div class="col-lg-5">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">You have been logged out</h5>
+          <p class="card-text">
+            Thanks for your time, contact me for any comments or suggestions
+            using my email address.
+          </p>
+          <hr />
+          <a href="{% url 'login' %}" class="btn btn-primary">Login again</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}
